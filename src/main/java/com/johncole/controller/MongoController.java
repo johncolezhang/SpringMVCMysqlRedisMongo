@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,8 +41,9 @@ public class MongoController {
         return toView("message", map);
     }
 
+    //@RequestParam用来映射参数，不写的话传值要与参数名相同
     @RequestMapping(value = {"/query_member"}, method = {RequestMethod.GET})
-    public ModelAndView queryMember(String id, HttpServletRequest request) {
+    public ModelAndView queryMember(@RequestParam(value = "id", required = false, defaultValue = "1")String id, HttpServletRequest request) {
         Map<String, String> map = new HashMap<String, String>();
         Member member = memberService.queryById(id);
         map.put("message", "Member:" + member.toString());

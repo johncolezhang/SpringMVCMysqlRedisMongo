@@ -39,6 +39,9 @@ public class MemberController extends BaseMultiController {
         return toView("message", map);
     }
 
+    //可以使用pojo作为参数用来传Member。
+    //若有@ModelAttribute修饰的方法，则将Member的数据作为value放到key为"member"的map中，存到implicitModel中。
+    //@ModelAttribute:在implicitModel中查找可以为"member"的map，没有的就去sessionAttribute中找，也没有就用反射实例一个。
     @RequestMapping(value = {"/add"}, method = {RequestMethod.POST})
     public ModelAndView addMember(HttpServletRequest request, HttpServletResponse response,
                                   @ModelAttribute("member")Member member) {
@@ -49,6 +52,7 @@ public class MemberController extends BaseMultiController {
     }
 
     //\d 表示0-9 任意一个数字 后面有+号 说明这个0-9单个数位出现一到多次
+    //@PathVariable:映射url中的占位符到参数中
     @RequestMapping(value = {"/{id:\\d+}/query"}, method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView queryMember(HttpServletRequest request, HttpServletResponse response,
                                     @PathVariable("id")String id) {
