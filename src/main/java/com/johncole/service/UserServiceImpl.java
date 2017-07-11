@@ -16,11 +16,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
-    private StringRedisTemplate redisTemplate;
 
     @Override
     public User findByUsernameAndPwd(String username, String password) {
         return userDao.findByUsernameAndPwd(username, password);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userDao.findByUsername(username);
     }
 
     @Override
@@ -43,11 +47,4 @@ public class UserServiceImpl implements UserService {
         userDao.delete(id);
     }
 
-    public void setRedisTemplate(StringRedisTemplate redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
-
-    public StringRedisTemplate getRedisTemplate() {
-        return redisTemplate;
-    }
 }

@@ -12,6 +12,8 @@ import java.util.List;
 public interface UserService {
     public User findByUsernameAndPwd(String username, String password);
 
+    public User findByUsername(String username);
+
     public List<User> find(User user);
 
     public void add(User user);

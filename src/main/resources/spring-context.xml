@@ -133,6 +133,24 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
+    <!--<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">-->
+        <!--<property name="host" value="smtp.163.com"/>-->
+        <!--<property name="username" value="m13798541301_1"/>-->
+        <!--<property name="password" value="w913126."/>-->
+        <!--<property name="port" value="465"/>-->
+        <!--<property name="defaultEncoding" value="UTF-8"/>-->
+        <!--<property name="javaMailProperties">-->
+            <!--<props>-->
+                <!--&lt;!&ndash; 必须进行授权认证，它的目的就是阻止他人任意乱发邮件 &ndash;&gt;-->
+                <!--<prop key="mail.smtp.auth">true</prop>-->
+                <!--&lt;!&ndash; SMTP加密方式:连接到一个TLS保护连接 &ndash;&gt;-->
+                <!--<prop key="mail.smtp.starttls.enable">true</prop>-->
+                <!--&lt;!&ndash; 设置邮件发送超时时间 &ndash;&gt;-->
+                <!--<prop key="mail.smtp.timeout">25000</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
     <!-- 事务管理 通知 -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>

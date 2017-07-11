@@ -3,12 +3,15 @@
 
 <mapper namespace="com.johncole.dao.mysql.UserDao">
 
-    <parameterMap id="parameterMap" type="com.johncole.entity.User"></parameterMap>
     <resultMap id="resultMap" type="com.johncole.entity.User">
+        <!--property 为实体的属性，column为数据库的属性-->
         <result property="id" column="id"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
         <result property="sex" column="sex"/>
+        <result property="is_validate" column="is_validate"/>
+        <result property="register_time" column="register_time"/>
+        <result property="validate_code" column="validate_code"/>
     </resultMap>
 
     <sql id="columnSql">
@@ -17,6 +20,9 @@
             t.username,
             t.password,
             t.sex,
+            t.is_validate,
+            t.register_time,
+            t.validate_code,
         </trim>
     </sql>
 
@@ -26,6 +32,23 @@
         FROM t_user t
         WHERE t.username = #{username} and t.password = #{password}
     </select>
+
+    <select id="findByUsername" resultMap="resultMap">
+        SELECT
+        <include refid="columnSql"></include>
+        FROM t_user t
+        WHERE t.username = #{username}
+    </select>
+
+    <update id="update" parameterType="com.johncole.entity.User">
+      UPDATE t_user SET
+          is_validate=#{is_validate}, validate_code=#{validate_code}, register_time=#{register_time}
+        WHERE username=#{username}
+    </update>
+
+    <insert id="add" parameterType="com.johncole.entity.User">
+        INSERT INTO t_user (username) VALUES (#{username})
+    </insert>
 
 
 </mapper>
